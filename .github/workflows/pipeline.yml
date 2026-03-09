@@ -1,17 +1,17 @@
-name: Pipeline CI
+name: CI/CD Pipeline
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  test:
+  pipeline:
 
     runs-on: ubuntu-latest
 
     steps:
 
-    - name: Descargar repositorio
+    - name: Descargar código
       uses: actions/checkout@v3
 
     - name: Instalar Python
@@ -24,3 +24,9 @@ jobs:
 
     - name: Ejecutar pruebas
       run: pytest
+
+    - name: Build del proyecto
+      run: python -m compileall .
+
+    - name: Simular despliegue
+      run: echo "Deploy realizado correctamente"
